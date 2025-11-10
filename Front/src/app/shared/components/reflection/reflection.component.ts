@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-reflection',
@@ -19,7 +20,8 @@ export class ReflectionComponent {
   loadDlls() {
     this.loading = true;
     this.error = false;
-    this.http.get<string[]>('http://localhost:5248/api/reflection/importers').subscribe({
+
+    this.http.get<string[]>(`${environment.apiUrl}/reflection/importers`).subscribe({
       next: data => {
         this.dlls = data;
         this.loading = false;
